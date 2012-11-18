@@ -1,7 +1,7 @@
 Summary:	Power management service
 Name:		upower
 Version:	0.9.18
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://upower.freedesktop.org/releases/%{name}-%{version}.tar.xz
@@ -59,6 +59,8 @@ upower API documentation.
 %prep
 %setup -q
 
+%{__sed} -i "s|bash|sh|" src/notify-upower.sh
+
 %build
 %{__autopoint}
 %{__gtkdocize}
@@ -112,7 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/polkit-1/actions/org.freedesktop.upower.qos.policy
 %{systemdunitdir}/upower.service
 %dir %{_prefix}/lib/systemd/system-sleep
-%{_prefix}/lib/systemd/system-sleep/notify-upower.sh
+%attr(755,root,root) %{_prefix}/lib/systemd/system-sleep/notify-upower.sh
 
 %{_mandir}/man1/upower.1*
 %{_mandir}/man7/UPower.7*
