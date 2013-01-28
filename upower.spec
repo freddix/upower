@@ -1,11 +1,11 @@
 Summary:	Power management service
 Name:		upower
-Version:	0.9.18
-Release:	3
+Version:	0.9.19
+Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://upower.freedesktop.org/releases/%{name}-%{version}.tar.xz
-# Source0-md5:	bfaaa1e7f8479fca5594406b3c36dff9
+# Source0-md5:	f96955ff1a2e4f006937d6b5ea95afb8
 URL:		http://upower.freedesktop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
