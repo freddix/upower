@@ -1,14 +1,11 @@
-%define		gitver	af24f55c7925c8ea990cb36078b63c17cd671a95
-
 Summary:	Power management service
 Name:		upower
-Version:	0.9.20
-Release:	0.%{gitver}.1
+Version:	0.9.21
+Release:	1
 License:	GPL v2+
 Group:		Libraries
-#Source0:	http://upower.freedesktop.org/releases/%{name}-%{version}.tar.xz
-Source0:	http://cgit.freedesktop.org/upower/snapshot/%{name}-%{gitver}.tar.gz
-# Source0-md5:	37d0df013cf18231969a4d975f42d83e
+Source0:	http://upower.freedesktop.org/releases/%{name}-%{version}.tar.xz
+# Source0-md5:	1aa2b9e6fd757cd151bbaa4991eacc18
 URL:		http://upower.freedesktop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -59,7 +56,7 @@ Requires:	gtk-doc-common
 upower API documentation.
 
 %prep
-%setup -qn %{name}-%{gitver}
+%setup -q
 
 %{__sed} -i "s|bash|sh|" src/notify-upower.sh
 
@@ -117,6 +114,8 @@ rm -rf $RPM_BUILD_ROOT
 %{systemdunitdir}/upower.service
 %dir %{_prefix}/lib/systemd/system-sleep
 %attr(755,root,root) %{_prefix}/lib/systemd/system-sleep/notify-upower.sh
+
+%dir /var/lib/upower
 
 %{_mandir}/man1/upower.1*
 %{_mandir}/man7/UPower.7*
