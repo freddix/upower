@@ -1,11 +1,14 @@
+%define		gitver	5c0a57cfa01e00c8418419b4086b1369b1bd74aa
+
 Summary:	Power management service
 Name:		upower
-Version:	0.9.21
-Release:	1
+Version:	0.9.22
+Release:	0.%{gitver}.1
 License:	GPL v2+
 Group:		Libraries
-Source0:	http://upower.freedesktop.org/releases/%{name}-%{version}.tar.xz
-# Source0-md5:	1aa2b9e6fd757cd151bbaa4991eacc18
+#Source0:	http://upower.freedesktop.org/releases/%{name}-%{version}.tar.xz
+Source0:	http://cgit.freedesktop.org/upower/snapshot/upower-%{gitver}.tar.gz
+# Source0-md5:	488377b0e9a07499f1085f8652fdda57
 URL:		http://upower.freedesktop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -56,7 +59,7 @@ Requires:	gtk-doc-common
 upower API documentation.
 
 %prep
-%setup -q
+%setup -qn %{name}-%{gitver}
 
 %{__sed} -i "s|bash|sh|" src/notify-upower.sh
 
