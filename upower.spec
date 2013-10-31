@@ -1,14 +1,11 @@
-%define		gitver	5c0a57cfa01e00c8418419b4086b1369b1bd74aa
-
 Summary:	Power management service
 Name:		upower
-Version:	0.9.22
-Release:	0.%{gitver}.1
+Version:	0.9.23
+Release:	1
 License:	GPL v2+
 Group:		Libraries
-#Source0:	http://upower.freedesktop.org/releases/%{name}-%{version}.tar.xz
-Source0:	http://cgit.freedesktop.org/upower/snapshot/upower-%{gitver}.tar.gz
-# Source0-md5:	488377b0e9a07499f1085f8652fdda57
+Source0:	http://upower.freedesktop.org/releases/%{name}-%{version}.tar.xz
+# Source0-md5:	39cfd97bfaf7d30908f20cf937a57634
 URL:		http://upower.freedesktop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -59,7 +56,7 @@ Requires:	gtk-doc-common
 upower API documentation.
 
 %prep
-%setup -qn %{name}-%{gitver}
+%setup -q
 
 %{__sed} -i "s|bash|sh|" src/notify-upower.sh
 
@@ -85,6 +82,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT	\
 	udevrulesdir=%{_prefix}/lib/udev/rules.d
+
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %find_lang %{name}
 
