@@ -1,11 +1,11 @@
 Summary:	Power management service
 Name:		upower
-Version:	0.9.23
+Version:	0.99.0
 Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://upower.freedesktop.org/releases/%{name}-%{version}.tar.xz
-# Source0-md5:	39cfd97bfaf7d30908f20cf937a57634
+# Source0-md5:	14f43bc13353e23e7280863f33ac50d2
 URL:		http://upower.freedesktop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -58,8 +58,6 @@ upower API documentation.
 %prep
 %setup -q
 
-%{__sed} -i "s|bash|sh|" src/notify-upower.sh
-
 %build
 %{__autopoint}
 %{__gtkdocize}
@@ -105,17 +103,12 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/UPower/UPower.conf
 
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/dbus-1/system.d/org.freedesktop.UPower.conf
-%config(noreplace) %verify(not md5 mtime size) %{_prefix}/lib/udev/rules.d/95-upower-battery-recall-*.rules
 %config(noreplace) %verify(not md5 mtime size) %{_prefix}/lib/udev/rules.d/95-upower-csr.rules
 %config(noreplace) %verify(not md5 mtime size) %{_prefix}/lib/udev/rules.d/95-upower-hid.rules
 %config(noreplace) %verify(not md5 mtime size) %{_prefix}/lib/udev/rules.d/95-upower-wup.rules
 
 %{_datadir}/dbus-1/system-services/org.freedesktop.UPower.service
-%{_datadir}/polkit-1/actions/org.freedesktop.upower.policy
-%{_datadir}/polkit-1/actions/org.freedesktop.upower.qos.policy
 %{systemdunitdir}/upower.service
-%dir %{_prefix}/lib/systemd/system-sleep
-%attr(755,root,root) %{_prefix}/lib/systemd/system-sleep/notify-upower.sh
 
 %dir /var/lib/upower
 
@@ -136,7 +129,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gir-1.0/UPowerGlib-1.0.gir
 %{_datadir}/dbus-1/interfaces/org.freedesktop.UPower.Device.xml
 %{_datadir}/dbus-1/interfaces/org.freedesktop.UPower.KbdBacklight.xml
-%{_datadir}/dbus-1/interfaces/org.freedesktop.UPower.QoS.xml
 %{_datadir}/dbus-1/interfaces/org.freedesktop.UPower.Wakeups.xml
 %{_datadir}/dbus-1/interfaces/org.freedesktop.UPower.xml
 %{_pkgconfigdir}/*.pc
